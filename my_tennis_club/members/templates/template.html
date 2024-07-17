@@ -1,5 +1,7 @@
+{% load static %}
 <!DOCTYPE html>
 <html>
+  <link rel="stylesheet" href="{% static 'myfirst.css' %}">
   {% include "menu.html" with me="PETRA" sponsor="ASN" %}
 <body>
 
@@ -44,6 +46,21 @@
   <h1>NO</h1>
   {% endif %}
   {% endwith %}
+
+<table border='1'>
+  <tr>
+    <th>ID</th>
+    <th>Firstname</th>
+    <th>Lastname</th>
+  </tr>
+  {% for x in mymembers %}
+    <tr>
+      <td>{{ x.id }}</td>
+        <td>{{ x.firstname }}</td>
+      <td>{{ x.lastname }}</td>
+    </tr>
+  {% endfor %}
+</table>
 
 </body>
 {% include 'footer.html' %}

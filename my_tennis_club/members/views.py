@@ -27,14 +27,15 @@ def main(request):
 
 def testing(request):
     template = loader.get_template('template.html')
-    mymembers = Member.objects.all().values()
+    mydata = Member.objects.all().order_by('-firstname').values()
     context = {
-        'fruits': ['Apple', 'Banana', 'Cherry'],
         'firstname': 'Ben',
-        'mymembers': mymembers,
+        'mymembers': mydata,
     }
     return HttpResponse(template.render(context, request))
+
 
 def index(request):
   template = loader.get_template('index.html')
   return HttpResponse(template.render())
+
