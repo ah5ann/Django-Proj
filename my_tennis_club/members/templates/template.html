@@ -1,12 +1,50 @@
 <!DOCTYPE html>
 <html>
+  {% include "menu.html" with me="PETRA" sponsor="ASN" %}
 <body>
 
-{% for x in fruits %}
+  {% for x in fruits %}
   <h1>{{ x }}</h1>
-{% endfor %}
+  {% endfor %}
 
-<p>In views.py you can see what the fruits variable looks like.</p>
+  <p>In views.py you can see what the fruits variable looks like.</p>
+
+  <h1>Hello {{ firstname }}</h1>
+
+  {% with Number="12" %}
+  <h1>{{ Number }}</h1>
+  {% endwith %}
+
+  <ul>
+    {% for x in mymembers reversed %}
+    <h5>{{ x.id }}</h5>
+    <li {% if forloop %} style='background-color:lightblue;' 
+    {% endif %}>
+    {{ x.firstname }}
+    {{ x.lastname }}
+    </li>
+    <li>{{ x.lastname }}</li>
+    {% empty %}
+    <li>No members</li>
+    {% endfor %}
+  </ul>
+
+  {% with var1=1 var2=2 %}
+  {% if var1 is var2 %}
+  <h1>YES</h1>
+  {% else %}
+  <h1>NO</h1>
+  {% endif %}
+  {% endwith %}
+
+  {% with var1=y var2=x %}
+  {% if var1 == var2 %}
+  <h1>YES</h1>
+  {% else %}
+  <h1>NO</h1>
+  {% endif %}
+  {% endwith %}
 
 </body>
+{% include 'footer.html' %}
 </html>
